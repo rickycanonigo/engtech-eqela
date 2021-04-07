@@ -1,5 +1,6 @@
 import jk.sql
 import jk.mysql
+import jk.time
 
 class is DatabaseDriver:
 
@@ -58,7 +59,7 @@ func getAllPayments(db as MySQLDatabase) as DynamicMap
 func insertPayment(db as MySQLDatabase, data as TableModel) as TableModel
 {
     assert data
-    data.setTimeStampAddedValue(SystemClock.asUTCSeconds())
+    data.setCreatedAtValue(SystemClock.asUTCSeconds())
     assert db.executeSync(db.prepareInsertStatementSync(TABLENAME, data.toDynamicMap()))
     return data
 }
