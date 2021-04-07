@@ -1,0 +1,51 @@
+import jk.sql
+import jk.mysql
+import jk.time
+
+class:
+
+const TABLENAME = "accounts"
+
+model TableModel static
+{
+    accountId as int
+    username as string
+    password as string
+    userRole as string
+    createdAt as long
+    updatedAt as long
+}
+
+model loginModel static
+{
+    username as string
+    password as string
+    userRole as string
+}
+
+func createTable as SQLTableInfo
+{
+    var tbl = SQLTableInfo.forName(TABLENAME)
+
+    tbl.addIntegerKeyColumn("accountId")
+    tbl.addStringColumn("username")
+    tbl.addStringColumn("password")
+    tbl.addStringColumn("userRole")
+    tbl.addLongColumn("createdAt")
+    tbl.addLongColumn("updatedAt")
+    
+    return tbl
+}
+
+func login(db as MySQLDatabase, loginConstraints as loginModel) as bool
+{
+    return true
+}
+
+func createAccount(db as MySQLDatabase,  dataModel as TableModel) as TableModel
+{
+    assert dataModel
+    dataModel.setCreatedAtValue(SystemClock.asUTCSeconds())
+    assert db.executeSync(db.prepareInsertStatementSync(TABLENAME, dataModel.toDynamicMap()))
+    return dataModel
+}
