@@ -38,7 +38,7 @@ func updateTable(table as SQLTableInfo)
 func updateTables as SQLTableInfo
 {   
     updateTable(AccountsModel.createTable())
-    
+    updateTable(ParticularsModel.createTable())
 }
 
 func close
