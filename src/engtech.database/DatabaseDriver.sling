@@ -51,7 +51,7 @@ func updateTables as SQLTableInfo
     
     // HRMS Model
     updateTable(EmployeeModel.createTable())
-    updateTable(EmployementModel.createTable())
+    updateTable(EmploymentModel.createTable())
     updateTable(EmployeeLogsModel.createTable())
     // End HRMS Model
 }
