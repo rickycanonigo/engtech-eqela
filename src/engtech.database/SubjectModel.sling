@@ -1,0 +1,25 @@
+import jk.sql
+
+class:
+
+const TABLE_NAME = "subjects"
+
+model Subject
+{
+    subjId as int
+    subjCode as string
+    subjName as string
+    createdAt as long
+    updatedAt as long
+}
+
+func createTable as SQLTableInfo
+{
+    var subject = SQLTableInfo.forName(TABLE_NAME)
+    subject.addIntegerKeyColumn("attId")
+    subject.addStringColumn("subjCode")
+    subject.addStringColumn("subjName")
+    subject.addLongColumn("createdAt")
+    subject.addLongColumn("updatedAt")
+    return (employee_logs)
+}
