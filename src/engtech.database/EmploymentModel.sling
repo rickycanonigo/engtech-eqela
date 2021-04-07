@@ -1,0 +1,33 @@
+import jk.sql
+
+class:
+
+const TABLE_NAME = "employment"
+
+model Employment
+{
+    employmentId as string
+    empId as string
+    empDateHired as long
+    empRate as string
+    empJobTitle as string
+    employmentType as string
+    employmentStatus as string
+    createdAt as long
+    updatedAt as long
+}
+
+func createTable as SQLTableInfo
+{
+    var employment = SQLTableInfo.forName(TABLE_NAME)
+    employment.addStringKeyColumn("employmentId")
+    employment.addStringColumn("empId")
+    employment.addStringColumn("empDateHired")
+    employment.addStringColumn("empRate")
+    employment.addStringColumn("empJobTitle")
+    employment.addStringColumn("employmentType")
+    employment.addStringColumn("employmentStatus")
+    employment.addLongColumn("createdAt")
+    employment.addLongColumn("updatedAt")
+    return (employment)
+}
