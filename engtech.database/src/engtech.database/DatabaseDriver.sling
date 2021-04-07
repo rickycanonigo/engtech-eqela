@@ -1,0 +1,53 @@
+import jk.log
+import jk.sqlite
+import jk.mysql
+import jk.sql
+import jk.env
+import jk.time
+
+class:
+
+pvar db as MySQLDatabase
+
+
+func forContext(ctx as LoggingContext) static as this
+{
+    var cstr = EnvironmentVariable.get("DY_DATABASE")
+    // FOR Faster DEV Testing
+    cstr = "localhost:jose:jose:sms_db:ssl:utf8"
+    //
+    Log.debug(ctx, "Opening database connection: '" .. cstr .. "'")
+    db = MySQLDatabase.forConnectionStringSync(ctx, cstr)
+    if not db:
+        Error.throw("failedToConnectToDatabase", cstr)
+    var v = new this()
+    v.setDb(db)
+    return v
+}
+
+func updateTable(table as SQLTableInfo)
+{
+    if not table:
+        Error.throw("nullTable","updateTable")
+    if not db:
+        Error.throw("nullDb", "updateTable")
+    if not db.ensureTableExistsSync(table):
+        Error.throw("failedToUpdateTable", table.getName())
+}
+
+func updateTables as SQLTableInfo
+{   
+    updateTable(Accounts.createTable())
+    
+    updateTable(Particulars.createTable())
+    
+    updateTable(Payments.createTable())
+    
+}
+
+func close
+{
+    if db:
+        db.closeSync()
+    db = null
+}
