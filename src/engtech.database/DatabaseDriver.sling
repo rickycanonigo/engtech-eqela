@@ -37,14 +37,23 @@ func updateTable(table as SQLTableInfo)
 
 func updateTables as SQLTableInfo
 {   
+    // General Model
     updateTable(AccountsModel.createTable())
-<<<<<<< HEAD
-    updateTable(ParticularsModel.createTable())
-=======
-
-    updateTable(PaymentsModel.createTable())
+    // End General Model
     
->>>>>>> 2170002296dd6094a4ea4d493037dc27b214bdbc
+    // Assessment Model
+    updateTable(ParticularsModel.createTable())
+    // End Assessment Model
+
+    // Cashier Model
+    updateTable(PaymentsModel.createTable())
+    // End Cashier Model
+    
+    // HRMS Model
+    updateTable(EmployeeModel.createTable())
+    updateTable(EmployementModel.createTable())
+    updateTable(EmployeeLogsModel.createTable())
+    // End HRMS Model
 }
 
 func close
