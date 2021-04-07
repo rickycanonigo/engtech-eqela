@@ -1,6 +1,6 @@
 {
     vendorId "eqela"
-    projectId "engtech.smsdatabase"
+    projectId "engtech.database"
     title "SMS Database"
     copyright "Copyright (c) 2021 Eqela"
     license "All rights reserved."
