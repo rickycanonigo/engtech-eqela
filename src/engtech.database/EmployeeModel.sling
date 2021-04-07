@@ -1,0 +1,44 @@
+import jk.log
+import jk.sqlite
+import jk.mysql
+import jk.sql
+import jk.env
+import jk.time
+
+class:
+
+const TABLE_NAME = "employee"
+
+model Employee
+{
+    empId as string
+    empFname as string
+    empMname as string
+    empLname as string
+    empSuffix as string
+    empAge as string
+    empBirthday as string
+    empGender as string
+    empStatus as string
+    empMobile as string
+    createdAt as long
+    updatedAt as long
+}
+
+func createTable as SQLTableInfo
+{
+    var employee = SQLTableInfo.forName(TABLE_NAME)
+    employee.addStringKeyColumn("empId")
+    employee.addStringColumn("empFname")
+    employee.addStringColumn("empMname")
+    employee.addStringColumn("empLname")
+    employee.addStringColumn("empSuffix")
+    employee.addStringColumn("empAge")
+    employee.addStringColumn("empBirthday")
+    employee.addStringColumn("empGender")
+    employee.addStringColumn("empStatus")
+    employee.addStringColumn("empMobile")
+    employee.addLongColumn("createdAt")
+    employee.addLongColumn("updatedAt")
+    return (employee)
+}
