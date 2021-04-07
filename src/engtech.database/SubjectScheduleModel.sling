@@ -31,5 +31,5 @@ func createTable as SQLTableInfo
     subject.addStringColumn("sem")
     subject.addLongColumn("createdAt")
     subject.addLongColumn("updatedAt")
-    return (employee_logs)
+    return (subject)
 }

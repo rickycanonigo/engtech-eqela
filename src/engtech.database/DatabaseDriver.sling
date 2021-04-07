@@ -54,6 +54,11 @@ func updateTables as SQLTableInfo
     updateTable(EmploymentModel.createTable())
     updateTable(EmployeeLogsModel.createTable())
     // End HRMS Model
+
+    //  Curriculum Model
+    updateTable(SubjectModel.createTable())
+    updateTable(SubjectScheduleModel.createTable())
+    //  End Curriculum Model
 }
 
 func close

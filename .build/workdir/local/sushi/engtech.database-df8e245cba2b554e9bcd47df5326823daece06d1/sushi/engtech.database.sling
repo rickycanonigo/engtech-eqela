@@ -1,0 +1,386 @@
+class name engtech.database.EmploymentModel header public
+{
+	import jk.lang
+	import jk.sql
+	ctor
+	var TABLE_NAME public static const as string
+	class name Employment header extends jk.json.JSONObjectAdapter implements jk.lang.StringObject public static static
+	{
+		import jk.json
+		ctor
+		func setEmploymentId(value as string) as engtech.database.EmploymentModel.Employment
+		func getEmploymentId as string
+		func setEmpId(value as string) as engtech.database.EmploymentModel.Employment
+		func getEmpId as string
+		func setEmpDateHiredValue(value as long) as engtech.database.EmploymentModel.Employment
+		func getEmpDateHiredValue as long
+		func setEmpDateHired(value as jk.lang.LongIntegerObject) as engtech.database.EmploymentModel.Employment
+		func getEmpDateHired as jk.lang.LongIntegerObject
+		func setEmpRate(value as string) as engtech.database.EmploymentModel.Employment
+		func getEmpRate as string
+		func setEmpJobTitle(value as string) as engtech.database.EmploymentModel.Employment
+		func getEmpJobTitle as string
+		func setEmploymentType(value as string) as engtech.database.EmploymentModel.Employment
+		func getEmploymentType as string
+		func setEmploymentStatus(value as string) as engtech.database.EmploymentModel.Employment
+		func getEmploymentStatus as string
+		func setCreatedAtValue(value as long) as engtech.database.EmploymentModel.Employment
+		func getCreatedAtValue as long
+		func setCreatedAt(value as jk.lang.LongIntegerObject) as engtech.database.EmploymentModel.Employment
+		func getCreatedAt as jk.lang.LongIntegerObject
+		func setUpdatedAtValue(value as long) as engtech.database.EmploymentModel.Employment
+		func getUpdatedAtValue as long
+		func setUpdatedAt(value as jk.lang.LongIntegerObject) as engtech.database.EmploymentModel.Employment
+		func getUpdatedAt as jk.lang.LongIntegerObject
+		func toJsonObject override as object
+		func fromJsonObject(o as object) override as bool
+		func fromJsonString(o as string) as bool
+		func toJsonString as string
+		func toString as string
+		func forJsonString(o as string) static as engtech.database.EmploymentModel.Employment
+		func forJsonObject(o as object) static as engtech.database.EmploymentModel.Employment
+	}
+	func createTable as jk.sql.SQLTableInfo
+}
+class name engtech.database.AccountsModel header public
+{
+	import jk.lang
+	import jk.sql
+	import jk.mysql
+	import jk.time
+	ctor
+	var TABLENAME public static const as string
+	class name TableModel header extends jk.json.JSONObjectAdapter implements jk.lang.StringObject public static static
+	{
+		import jk.json
+		ctor
+		func setAccountIdValue(value as int) as engtech.database.AccountsModel.TableModel
+		func getAccountIdValue as int
+		func setAccountId(value as jk.lang.IntegerObject) as engtech.database.AccountsModel.TableModel
+		func getAccountId as jk.lang.IntegerObject
+		func setUsername(value as string) as engtech.database.AccountsModel.TableModel
+		func getUsername as string
+		func setPassword(value as string) as engtech.database.AccountsModel.TableModel
+		func getPassword as string
+		func setUserRole(value as string) as engtech.database.AccountsModel.TableModel
+		func getUserRole as string
+		func setCreatedAtValue(value as long) as engtech.database.AccountsModel.TableModel
+		func getCreatedAtValue as long
+		func setCreatedAt(value as jk.lang.LongIntegerObject) as engtech.database.AccountsModel.TableModel
+		func getCreatedAt as jk.lang.LongIntegerObject
+		func setUpdatedAtValue(value as long) as engtech.database.AccountsModel.TableModel
+		func getUpdatedAtValue as long
+		func setUpdatedAt(value as jk.lang.LongIntegerObject) as engtech.database.AccountsModel.TableModel
+		func getUpdatedAt as jk.lang.LongIntegerObject
+		func toJsonObject override as object
+		func fromJsonObject(o as object) override as bool
+		func fromJsonString(o as string) as bool
+		func toJsonString as string
+		func toString as string
+		func forJsonString(o as string) static as engtech.database.AccountsModel.TableModel
+		func forJsonObject(o as object) static as engtech.database.AccountsModel.TableModel
+	}
+	class name loginModel header extends jk.json.JSONObjectAdapter implements jk.lang.StringObject public static static
+	{
+		import jk.json
+		ctor
+		func setUsername(value as string) as engtech.database.AccountsModel.loginModel
+		func getUsername as string
+		func setPassword(value as string) as engtech.database.AccountsModel.loginModel
+		func getPassword as string
+		func setUserRole(value as string) as engtech.database.AccountsModel.loginModel
+		func getUserRole as string
+		func toJsonObject override as object
+		func fromJsonObject(o as object) override as bool
+		func fromJsonString(o as string) as bool
+		func toJsonString as string
+		func toString as string
+		func forJsonString(o as string) static as engtech.database.AccountsModel.loginModel
+		func forJsonObject(o as object) static as engtech.database.AccountsModel.loginModel
+	}
+	func createTable as jk.sql.SQLTableInfo
+	func login(db as jk.mysql.MySQLDatabase, loginConstraints as engtech.database.AccountsModel.loginModel) as bool
+	func createAccount(db as jk.mysql.MySQLDatabase, dataModel as engtech.database.AccountsModel.TableModel) as engtech.database.AccountsModel.TableModel
+}
+class name engtech.database.EmployeeLogsModel header public
+{
+	import jk.lang
+	import jk.sql
+	ctor
+	var TABLE_NAME public static const as string
+	class name Employment header extends jk.json.JSONObjectAdapter implements jk.lang.StringObject public static static
+	{
+		import jk.json
+		ctor
+		func setAttIdValue(value as int) as engtech.database.EmployeeLogsModel.Employment
+		func getAttIdValue as int
+		func setAttId(value as jk.lang.IntegerObject) as engtech.database.EmployeeLogsModel.Employment
+		func getAttId as jk.lang.IntegerObject
+		func setEmpId(value as string) as engtech.database.EmployeeLogsModel.Employment
+		func getEmpId as string
+		func setEmpLogIn(value as string) as engtech.database.EmployeeLogsModel.Employment
+		func getEmpLogIn as string
+		func setEmpLogOut(value as string) as engtech.database.EmployeeLogsModel.Employment
+		func getEmpLogOut as string
+		func setCreatedAtValue(value as long) as engtech.database.EmployeeLogsModel.Employment
+		func getCreatedAtValue as long
+		func setCreatedAt(value as jk.lang.LongIntegerObject) as engtech.database.EmployeeLogsModel.Employment
+		func getCreatedAt as jk.lang.LongIntegerObject
+		func setUpdatedAtValue(value as long) as engtech.database.EmployeeLogsModel.Employment
+		func getUpdatedAtValue as long
+		func setUpdatedAt(value as jk.lang.LongIntegerObject) as engtech.database.EmployeeLogsModel.Employment
+		func getUpdatedAt as jk.lang.LongIntegerObject
+		func toJsonObject override as object
+		func fromJsonObject(o as object) override as bool
+		func fromJsonString(o as string) as bool
+		func toJsonString as string
+		func toString as string
+		func forJsonString(o as string) static as engtech.database.EmployeeLogsModel.Employment
+		func forJsonObject(o as object) static as engtech.database.EmployeeLogsModel.Employment
+	}
+	func createTable as jk.sql.SQLTableInfo
+}
+class name engtech.database.ParticularsModel header public
+{
+	import jk.lang
+	import jk.sql
+	import jk.mysql
+	import jk.time
+	ctor
+	var TABLENAME public static const as string
+	class name TableModel header extends jk.json.JSONObjectAdapter implements jk.lang.StringObject public static static
+	{
+		import jk.json
+		ctor
+		func setParticular_idValue(value as int) as engtech.database.ParticularsModel.TableModel
+		func getParticular_idValue as int
+		func setParticular_id(value as jk.lang.IntegerObject) as engtech.database.ParticularsModel.TableModel
+		func getParticular_id as jk.lang.IntegerObject
+		func setSchool_year(value as string) as engtech.database.ParticularsModel.TableModel
+		func getSchool_year as string
+		func setSchool_sem(value as string) as engtech.database.ParticularsModel.TableModel
+		func getSchool_sem as string
+		func setCourse_name(value as string) as engtech.database.ParticularsModel.TableModel
+		func getCourse_name as string
+		func setParticular_name(value as string) as engtech.database.ParticularsModel.TableModel
+		func getParticular_name as string
+		func setParticular_amount(value as string) as engtech.database.ParticularsModel.TableModel
+		func getParticular_amount as string
+		func setCreated_atValue(value as long) as engtech.database.ParticularsModel.TableModel
+		func getCreated_atValue as long
+		func setCreated_at(value as jk.lang.LongIntegerObject) as engtech.database.ParticularsModel.TableModel
+		func getCreated_at as jk.lang.LongIntegerObject
+		func setUpdated_atValue(value as long) as engtech.database.ParticularsModel.TableModel
+		func getUpdated_atValue as long
+		func setUpdated_at(value as jk.lang.LongIntegerObject) as engtech.database.ParticularsModel.TableModel
+		func getUpdated_at as jk.lang.LongIntegerObject
+		func toJsonObject override as object
+		func fromJsonObject(o as object) override as bool
+		func fromJsonString(o as string) as bool
+		func toJsonString as string
+		func toString as string
+		func forJsonString(o as string) static as engtech.database.ParticularsModel.TableModel
+		func forJsonObject(o as object) static as engtech.database.ParticularsModel.TableModel
+	}
+	func createTable as jk.sql.SQLTableInfo
+}
+class name engtech.database.SubjectModel header public
+{
+	import jk.lang
+	import jk.sql
+	ctor
+	var TABLE_NAME public static const as string
+	class name Subject header extends jk.json.JSONObjectAdapter implements jk.lang.StringObject public static static
+	{
+		import jk.json
+		ctor
+		func setSubjIdValue(value as int) as engtech.database.SubjectModel.Subject
+		func getSubjIdValue as int
+		func setSubjId(value as jk.lang.IntegerObject) as engtech.database.SubjectModel.Subject
+		func getSubjId as jk.lang.IntegerObject
+		func setSubjCode(value as string) as engtech.database.SubjectModel.Subject
+		func getSubjCode as string
+		func setSubjName(value as string) as engtech.database.SubjectModel.Subject
+		func getSubjName as string
+		func setCreatedAtValue(value as long) as engtech.database.SubjectModel.Subject
+		func getCreatedAtValue as long
+		func setCreatedAt(value as jk.lang.LongIntegerObject) as engtech.database.SubjectModel.Subject
+		func getCreatedAt as jk.lang.LongIntegerObject
+		func setUpdatedAtValue(value as long) as engtech.database.SubjectModel.Subject
+		func getUpdatedAtValue as long
+		func setUpdatedAt(value as jk.lang.LongIntegerObject) as engtech.database.SubjectModel.Subject
+		func getUpdatedAt as jk.lang.LongIntegerObject
+		func toJsonObject override as object
+		func fromJsonObject(o as object) override as bool
+		func fromJsonString(o as string) as bool
+		func toJsonString as string
+		func toString as string
+		func forJsonString(o as string) static as engtech.database.SubjectModel.Subject
+		func forJsonObject(o as object) static as engtech.database.SubjectModel.Subject
+	}
+	func createTable as jk.sql.SQLTableInfo
+}
+class name engtech.database.EmployeeModel header public
+{
+	import jk.lang
+	import jk.log
+	import jk.sqlite
+	import jk.mysql
+	import jk.sql
+	import jk.env
+	import jk.time
+	ctor
+	var TABLE_NAME public static const as string
+	class name Employee header extends jk.json.JSONObjectAdapter implements jk.lang.StringObject public static static
+	{
+		import jk.json
+		ctor
+		func setEmpId(value as string) as engtech.database.EmployeeModel.Employee
+		func getEmpId as string
+		func setEmpFname(value as string) as engtech.database.EmployeeModel.Employee
+		func getEmpFname as string
+		func setEmpMname(value as string) as engtech.database.EmployeeModel.Employee
+		func getEmpMname as string
+		func setEmpLname(value as string) as engtech.database.EmployeeModel.Employee
+		func getEmpLname as string
+		func setEmpSuffix(value as string) as engtech.database.EmployeeModel.Employee
+		func getEmpSuffix as string
+		func setEmpAge(value as string) as engtech.database.EmployeeModel.Employee
+		func getEmpAge as string
+		func setEmpBirthday(value as string) as engtech.database.EmployeeModel.Employee
+		func getEmpBirthday as string
+		func setEmpGender(value as string) as engtech.database.EmployeeModel.Employee
+		func getEmpGender as string
+		func setEmpStatus(value as string) as engtech.database.EmployeeModel.Employee
+		func getEmpStatus as string
+		func setEmpMobile(value as string) as engtech.database.EmployeeModel.Employee
+		func getEmpMobile as string
+		func setCreatedAtValue(value as long) as engtech.database.EmployeeModel.Employee
+		func getCreatedAtValue as long
+		func setCreatedAt(value as jk.lang.LongIntegerObject) as engtech.database.EmployeeModel.Employee
+		func getCreatedAt as jk.lang.LongIntegerObject
+		func setUpdatedAtValue(value as long) as engtech.database.EmployeeModel.Employee
+		func getUpdatedAtValue as long
+		func setUpdatedAt(value as jk.lang.LongIntegerObject) as engtech.database.EmployeeModel.Employee
+		func getUpdatedAt as jk.lang.LongIntegerObject
+		func toJsonObject override as object
+		func fromJsonObject(o as object) override as bool
+		func fromJsonString(o as string) as bool
+		func toJsonString as string
+		func toString as string
+		func forJsonString(o as string) static as engtech.database.EmployeeModel.Employee
+		func forJsonObject(o as object) static as engtech.database.EmployeeModel.Employee
+	}
+	func createTable as jk.sql.SQLTableInfo
+}
+class name engtech.database.DatabaseDriver header public
+{
+	import jk.lang
+	import jk.log
+	import jk.sqlite
+	import jk.mysql
+	import jk.sql
+	import jk.env
+	import jk.time
+	ctor
+	func forContext(ctx as jk.log.LoggingContext) static as engtech.database.DatabaseDriver
+	func updateTable(table as jk.sql.SQLTableInfo)
+	func updateTables as jk.sql.SQLTableInfo
+	func close
+	func getDb as jk.mysql.MySQLDatabase #getterMethod
+	func setDb(v as jk.mysql.MySQLDatabase) as engtech.database.DatabaseDriver #setterMethod
+}
+class name engtech.database.PaymentsModel header extends engtech.database.DatabaseDriver public
+{
+	import jk.lang
+	import jk.sql
+	import jk.mysql
+	import jk.time
+	ctor
+	var TABLENAME public static const as string
+	class name TableModel header extends jk.json.JSONObjectAdapter implements jk.lang.StringObject public static static
+	{
+		import jk.json
+		ctor
+		func setPaymentsIdValue(value as int) as engtech.database.PaymentsModel.TableModel
+		func getPaymentsIdValue as int
+		func setPaymentsId(value as jk.lang.IntegerObject) as engtech.database.PaymentsModel.TableModel
+		func getPaymentsId as jk.lang.IntegerObject
+		func setOrNumber(value as string) as engtech.database.PaymentsModel.TableModel
+		func getOrNumber as string
+		func setStudentId(value as string) as engtech.database.PaymentsModel.TableModel
+		func getStudentId as string
+		func setAssessmentId(value as string) as engtech.database.PaymentsModel.TableModel
+		func getAssessmentId as string
+		func setPrice(value as string) as engtech.database.PaymentsModel.TableModel
+		func getPrice as string
+		func setPaymentAmount(value as string) as engtech.database.PaymentsModel.TableModel
+		func getPaymentAmount as string
+		func setPaymentChange(value as string) as engtech.database.PaymentsModel.TableModel
+		func getPaymentChange as string
+		func setPaymentDateValue(value as long) as engtech.database.PaymentsModel.TableModel
+		func getPaymentDateValue as long
+		func setPaymentDate(value as jk.lang.LongIntegerObject) as engtech.database.PaymentsModel.TableModel
+		func getPaymentDate as jk.lang.LongIntegerObject
+		func setCreatedAtValue(value as long) as engtech.database.PaymentsModel.TableModel
+		func getCreatedAtValue as long
+		func setCreatedAt(value as jk.lang.LongIntegerObject) as engtech.database.PaymentsModel.TableModel
+		func getCreatedAt as jk.lang.LongIntegerObject
+		func setUpdatedAtValue(value as long) as engtech.database.PaymentsModel.TableModel
+		func getUpdatedAtValue as long
+		func setUpdatedAt(value as jk.lang.LongIntegerObject) as engtech.database.PaymentsModel.TableModel
+		func getUpdatedAt as jk.lang.LongIntegerObject
+		func toJsonObject override as object
+		func fromJsonObject(o as object) override as bool
+		func fromJsonString(o as string) as bool
+		func toJsonString as string
+		func toString as string
+		func forJsonString(o as string) static as engtech.database.PaymentsModel.TableModel
+		func forJsonObject(o as object) static as engtech.database.PaymentsModel.TableModel
+	}
+	func createTable as jk.sql.SQLTableInfo
+	func getAllPayments(db as jk.mysql.MySQLDatabase) as jk.lang.DynamicMap
+	func insertPayment(db as jk.mysql.MySQLDatabase, data as engtech.database.PaymentsModel.TableModel) as engtech.database.PaymentsModel.TableModel
+}
+class name engtech.database.SubjectScheduleModel header public
+{
+	import jk.lang
+	import jk.sql
+	ctor
+	var TABLE_NAME public static const as string
+	class name SubjectSchedule header extends jk.json.JSONObjectAdapter implements jk.lang.StringObject public static static
+	{
+		import jk.json
+		ctor
+		func setSsIdValue(value as int) as engtech.database.SubjectScheduleModel.SubjectSchedule
+		func getSsIdValue as int
+		func setSsId(value as jk.lang.IntegerObject) as engtech.database.SubjectScheduleModel.SubjectSchedule
+		func getSsId as jk.lang.IntegerObject
+		func setRoomCode(value as string) as engtech.database.SubjectScheduleModel.SubjectSchedule
+		func getRoomCode as string
+		func setSubjectId(value as string) as engtech.database.SubjectScheduleModel.SubjectSchedule
+		func getSubjectId as string
+		func setEmpId(value as string) as engtech.database.SubjectScheduleModel.SubjectSchedule
+		func getEmpId as string
+		func setTimeStart(value as string) as engtech.database.SubjectScheduleModel.SubjectSchedule
+		func getTimeStart as string
+		func setTimeEnd(value as string) as engtech.database.SubjectScheduleModel.SubjectSchedule
+		func getTimeEnd as string
+		func setSy(value as string) as engtech.database.SubjectScheduleModel.SubjectSchedule
+		func getSy as string
+		func setSem(value as string) as engtech.database.SubjectScheduleModel.SubjectSchedule
+		func getSem as string
+		func setCreatedAt(value as string) as engtech.database.SubjectScheduleModel.SubjectSchedule
+		func getCreatedAt as string
+		func setUpdatedAt(value as string) as engtech.database.SubjectScheduleModel.SubjectSchedule
+		func getUpdatedAt as string
+		func toJsonObject override as object
+		func fromJsonObject(o as object) override as bool
+		func fromJsonString(o as string) as bool
+		func toJsonString as string
+		func toString as string
+		func forJsonString(o as string) static as engtech.database.SubjectScheduleModel.SubjectSchedule
+		func forJsonObject(o as object) static as engtech.database.SubjectScheduleModel.SubjectSchedule
+	}
+	func createTable as jk.sql.SQLTableInfo
+}
