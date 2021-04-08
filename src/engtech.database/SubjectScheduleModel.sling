@@ -2,7 +2,7 @@ import jk.sql
 
 class:
 
-const TABLE_NAME = "subjects"
+const TABLE_NAME = "subjectschedule"
 
 model SubjectSchedule
 {
