@@ -75,11 +75,11 @@ func getAllAccounts(db as MySQLDatabase) as DynamicMap
     return data
 }
 
-func editAccount(db as MySQLDatabase, id as String, data as TableModel) as bool
+func editAccount(db as MySQLDatabase, acId as string, data as TableModel) as bool
 {
     assert data
     data.setUpdatedAtValue(SystemClock.asUTCSeconds())
     var criteria = new TableModel()
-    criteria.setAccountIdValue(String.toInteger(payId))
+    criteria.setAccountIdValue(String.toInteger(acId))
     return db.executeSync(db.prepareUpdateStatementSync(TABLENAME,criteria.toDynamicMap(),data.toDynamicMap()))
 }
