@@ -7,4 +7,9 @@
 
 lib sling-tools:0.45.0
 import sling.tools.compiler
-SlingCompilerTool.forSushiLibraryDirectory().executeScript(args)
+
+// use when building for sushi only
+// SlingCompilerTool.forSushiLibraryDirectory().executeScript(args)
+
+// use when connected to eqela server
+SlingCompilerTool.forCrossPlatformLibraryDirectory().executeScript(args)
