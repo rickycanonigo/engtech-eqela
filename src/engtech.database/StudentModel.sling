@@ -1,0 +1,61 @@
+import jk.sql
+import jk.mysql
+import jk.time
+
+class:
+
+const TABLENAME = "student"
+
+model TableModel static
+{
+    student_id as int
+    firstname as string
+    middlename as string
+    lastname as string
+    gender as string
+    birthdate as long
+    created_at as long
+    updated_at as long
+}
+
+func createTable as SQLTableInfo
+{
+    var tbl = SQLTableInfo.forName(TABLENAME)
+
+    tbl.addIntegerKeyColumn("student_id")
+    tbl.addStringColumn("firstname")
+    tbl.addStringColumn("middlename")
+    tbl.addStringColumn("lastname")
+    tbl.addStringColumn("gender")
+    tbl.addLongColumn("birthdate")
+    tbl.addLongColumn("created_at")
+    tbl.addLongColumn("updated_at")
+
+    return tbl
+}
+
+func createStudent(db as MySQLDatabase,  dataModel as TableModel) as TableModel
+{
+    assert dataModel
+    dataModel.setCreated_atValue(SystemClock.asUTCSeconds())
+    assert db.executeSync(db.prepareInsertStatementSync(TABLENAME, dataModel.toDynamicMap()))
+    return dataModel
+}
+func getAllStudent(db as MySQLDatabase) as DynamicMap
+{
+    var v = new vector<TableModel>
+    var it = assert db.querySync(db.prepareQueryAllStatementSync(TABLENAME)):
+        return null
+    while it{
+        var o = it.next()
+        if not o:
+            break
+        var row = TableModel.forJsonObject(o)
+        if not row:
+            continue
+        v += row
+    }
+    var data = new DynamicMap()
+    data.setObject("records", v)
+    return data
+}
