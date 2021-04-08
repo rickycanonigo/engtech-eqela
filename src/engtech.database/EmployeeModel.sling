@@ -5,7 +5,7 @@ import jk.sql
 import jk.env
 import jk.time
 
-class:
+class is DatabaseDriver:
 
 const TABLE_NAME = "employee"
 
@@ -41,4 +41,32 @@ func createTable as SQLTableInfo
     employee.addLongColumn("createdAt")
     employee.addLongColumn("updatedAt")
     return (employee)
+}
+
+func getEmployees(db as MySQLDatabase) as DynamicMap
+{
+    var v = new vector<EmployeeModel.Employee>
+    var it = assert db.querySync(db.prepareQueryAllStatementSync(EmployeeModel.TABLE_NAME)):
+        return null
+    while it{
+        var o = it.next()
+        if  not o:
+            break
+        var employee = EmployeeModel.Employee.forJsonObject(o)
+        if not employee:
+            continue
+        v += employee
+    }
+    var data = new DynamicMap()
+    data.setObject("records", v)
+    return data 
+}
+
+func addEmployee(employee as EmployeeModel.Employee) as EmployeeModel.Employee
+{
+    assert employee
+    employee.setCreatedAtValue(SystemClock.asUTCSeconds())
+    employee.setUpdatedAtValue(SystemClock.asUTCSeconds())
+    assert db.executeSync(db.prepareInsertStatementSync(EmployeeModel.TABLE_NAME, employee.toDynamicMap()))
+    return employee
 }
