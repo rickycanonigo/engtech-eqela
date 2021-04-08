@@ -1,0 +1,36 @@
+import jk.sql
+import jk.mysql
+import jk.time
+
+class:
+
+const TABLENAME = "particulars"
+
+model TableModel static
+{
+    particular_id as int  
+    school_year as string
+    school_sem as string
+    course_name as string
+    particular_name as string
+    particular_amount as string
+    created_at as long
+    updated_at as long
+}
+
+func createTable as SQLTableInfo
+{
+    var tbl = SQLTableInfo.forName(TABLENAME)
+
+    tbl.addIntegerKeyColumn("particular_id")
+    tbl.addStringColumn("school_year")
+    tbl.addStringColumn("school_sem")
+    tbl.addStringColumn("course_name")
+    tbl.addStringColumn("particular_name")
+    tbl.addStringColumn("particular_amount")
+    tbl.addLongColumn("created_at")
+    tbl.addLongColumn("updated_at")
+    
+    return tbl
+}
+

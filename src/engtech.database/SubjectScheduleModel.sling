@@ -1,0 +1,35 @@
+import jk.sql
+
+class:
+
+const TABLE_NAME = "subjectschedule"
+
+model SubjectSchedule
+{
+    ssId as int
+    roomCode as string
+    subjectId as string 
+    empId as string
+    timeStart as string
+    timeEnd as string 
+    sy as string
+    sem as string 
+    createdAt as string
+    updatedAt as string
+}
+
+func createTable as SQLTableInfo
+{
+    var subject = SQLTableInfo.forName(TABLE_NAME)
+    subject.addIntegerKeyColumn("ssId")
+    subject.addStringColumn("roomCode")
+    subject.addStringColumn("subjectId")
+    subject.addStringColumn("empId")
+    subject.addStringColumn("timeStart")
+    subject.addStringColumn("timeEnd")
+    subject.addStringColumn("sy")
+    subject.addStringColumn("sem")
+    subject.addLongColumn("createdAt")
+    subject.addLongColumn("updatedAt")
+    return (subject)
+}
