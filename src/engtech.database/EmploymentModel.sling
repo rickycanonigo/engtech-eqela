@@ -4,7 +4,7 @@ class:
 
 const TABLE_NAME = "employment"
 
-model Employment
+model TableModel static
 {
     employmentId as string
     empId as string

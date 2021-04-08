@@ -9,7 +9,7 @@ class is DatabaseDriver:
 
 const TABLE_NAME = "employee"
 
-model Employee
+model TableModel static
 {
     empId as string
     empFname as string
@@ -45,28 +45,27 @@ func createTable as SQLTableInfo
 
 func getEmployees(db as MySQLDatabase) as DynamicMap
 {
-    var v = new vector<EmployeeModel.Employee>
-    var it = assert db.querySync(db.prepareQueryAllStatementSync(EmployeeModel.TABLE_NAME)):
+    var v = new vector<TableModel>
+    var it = assert db.querySync(db.prepareQueryAllStatementSync(TABLE_NAME)):
         return null
     while it{
         var o = it.next()
         if  not o:
             break
-        var employee = EmployeeModel.Employee.forJsonObject(o)
+        var employee = TableModel.forJsonObject(o)
         if not employee:
             continue
         v += employee
     }
     var data = new DynamicMap()
     data.setObject("records", v)
-    return data 
+    return data
 }
 
-func addEmployee(employee as EmployeeModel.Employee) as EmployeeModel.Employee
+func addEmployee(db as MySQLDatabase, data as TableModel) as TableModel
 {
-    assert employee
-    employee.setCreatedAtValue(SystemClock.asUTCSeconds())
-    employee.setUpdatedAtValue(SystemClock.asUTCSeconds())
-    assert db.executeSync(db.prepareInsertStatementSync(EmployeeModel.TABLE_NAME, employee.toDynamicMap()))
-    return employee
+    assert data
+    data.setCreatedAtValue(SystemClock.asUTCSeconds())
+    assert db.executeSync(db.prepareInsertStatementSync(TABLENAME, data.toDynamicMap()))
+    return data
 }
