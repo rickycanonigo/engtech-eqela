@@ -66,6 +66,6 @@ func addEmployee(db as MySQLDatabase, data as TableModel) as TableModel
 {
     assert data
     data.setCreatedAtValue(SystemClock.asUTCSeconds())
-    assert db.executeSync(db.prepareInsertStatementSync(TABLENAME, data.toDynamicMap()))
+    assert db.executeSync(db.prepareInsertStatementSync(TABLE_NAME, data.toDynamicMap()))
     return data
 }
