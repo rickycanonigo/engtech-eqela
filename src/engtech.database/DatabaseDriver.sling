@@ -14,14 +14,14 @@ func forContext(ctx as LoggingContext) static as this
 {
     var cstr = EnvironmentVariable.get("SMS_DATABASE")
     // FOR Faster DEV Testing
-    cstr = "localhost:engtech:Engtech@123:sms_db:ssl:utf8"
+    // cstr = "localhost:engtech:Engtech@123:sms_db:ssl:utf8"
     //
     Log.debug(ctx, "Opening database connection: '" .. cstr .. "'")
-    db = MySQLDatabase.forConnectionStringSync(ctx, cstr)
-    if not db:
+    var db2 = MySQLDatabase.forConnectionStringSync(ctx, cstr)
+    if not db2:
         Error.throw("failedToConnectToDatabase", cstr)
     var v = new this()
-    v.setDb(db)
+    v.setDb(db2)
     return v
 }
 
