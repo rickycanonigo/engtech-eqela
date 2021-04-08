@@ -16,13 +16,6 @@ model TableModel static
     updatedAt as long
 }
 
-model loginModel static
-{
-    username as string
-    password as string
-    userRole as string
-}
-
 func createTable as SQLTableInfo
 {
     var tbl = SQLTableInfo.forName(TABLENAME)
@@ -37,9 +30,23 @@ func createTable as SQLTableInfo
     return tbl
 }
 
-func login(db as MySQLDatabase, loginConstraints as loginModel) as bool
+func login(db as MySQLDatabase, loginConstraints as DynamicMap) as DynamicMap
 {
-    return true
+    var v = new vector<TableModel>
+    var it = assert db.querySync(db.prepareSelectStatementSync(TABLENAME, loginConstraints)):
+        return null
+    while it{
+        var o = it.next()
+        if not o:
+            break
+        var row = TableModel.forJsonObject(o)
+        if not row:
+            continue
+        v += row
+    }
+    var data = new DynamicMap()
+    data.setObject("records", v)
+    return data
 }
 
 func createAccount(db as MySQLDatabase,  dataModel as TableModel) as TableModel
@@ -66,4 +73,13 @@ func getAllAccounts(db as MySQLDatabase) as DynamicMap
     var data = new DynamicMap()
     data.setObject("records", v)
     return data
+}
+
+func editAccount(db as MySQLDatabase, id as String, data as TableModel) as bool
+{
+    assert data
+    data.setUpdatedAtValue(SystemClock.asUTCSeconds())
+    var criteria = new TableModel()
+    criteria.setAccountIdValue(String.toInteger(payId))
+    return db.executeSync(db.prepareUpdateStatementSync(TABLENAME,criteria.toDynamicMap(),data.toDynamicMap()))
 }

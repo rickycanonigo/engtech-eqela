@@ -63,3 +63,19 @@ func insertPayment(db as MySQLDatabase, data as TableModel) as TableModel
     assert db.executeSync(db.prepareInsertStatementSync(TABLENAME, data.toDynamicMap()))
     return data
 }
+
+func editPayment(db as MySQLDatabase, payId as string, data as TableModel) as bool
+{
+    assert data
+    data.setUpdatedAtValue(SystemClock.asUTCSeconds())
+    var criteria = new TableModel()
+    criteria.setPaymentsIdValue(String.toInteger(payId))
+    return db.executeSync(db.prepareUpdateStatementSync(TABLENAME,criteria.toDynamicMap(),data.toDynamicMap()))
+}
+
+func deletePayment(db as MySQLDatabase, payId as string) as bool
+{
+    var criteria = new TableModel()
+    criteria.setPaymentsIdValue(String.toInteger(payId))
+    return db.executeSync(db.prepareDeleteStatementSync(TABLENAME, criteria.toDynamicMap()))
+}
