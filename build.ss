@@ -5,6 +5,6 @@
 # All rights reserved.
 #
 
-lib sling-tools:0.34.0
+lib sling-tools:0.45.0
 import sling.tools.compiler
-SlingCompilerTool.forSushiLibraryDirectory().executeScript(args)
+SlingCompilerTool.forCrossPlatformLibraryDirectory().executeScript(args)
