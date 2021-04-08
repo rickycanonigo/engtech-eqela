@@ -49,3 +49,21 @@ func createAccount(db as MySQLDatabase,  dataModel as TableModel) as TableModel
     assert db.executeSync(db.prepareInsertStatementSync(TABLENAME, dataModel.toDynamicMap()))
     return dataModel
 }
+func getAllAccounts(db as MySQLDatabase) as DynamicMap
+{
+    var v = new vector<TableModel>
+    var it = assert db.querySync(db.prepareQueryAllStatementSync(TABLENAME)):
+        return null
+    while it{
+        var o = it.next()
+        if not o:
+            break
+        var row = TableModel.forJsonObject(o)
+        if not row:
+            continue
+        v += row
+    }
+    var data = new DynamicMap()
+    data.setObject("records", v)
+    return data
+}
