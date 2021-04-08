@@ -33,7 +33,7 @@ func createTable as SQLTableInfo
     tbl.addStringColumn("userRole")
     tbl.addLongColumn("createdAt")
     tbl.addLongColumn("updatedAt")
-    
+    tbl.addUniqueIndex("username")
     return tbl
 }
 
