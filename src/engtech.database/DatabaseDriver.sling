@@ -59,6 +59,11 @@ func updateTables as SQLTableInfo
     updateTable(SubjectModel.createTable())
     updateTable(SubjectScheduleModel.createTable())
     //  End Curriculum Model
+
+    //
+    updateTable(StudentModel.createTable())
+    updateTable(AdmissionModel.createTable())
+    //
 }
 
 func close

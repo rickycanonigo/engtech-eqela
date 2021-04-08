@@ -83,3 +83,10 @@ func editAccount(db as MySQLDatabase, acId as string, data as TableModel) as boo
     criteria.setAccountIdValue(String.toInteger(acId))
     return db.executeSync(db.prepareUpdateStatementSync(TABLENAME,criteria.toDynamicMap(),data.toDynamicMap()))
 }
+
+func deleteAccount(db as MySQLDatabase, acId as string) as bool
+{
+    var criteria = new TableModel()
+    criteria.setAccountIdValue(String.toInteger(acId))
+    return db.executeSync(db.prepareDeleteStatementSync(TABLENAME, criteria.toDynamicMap()))
+}

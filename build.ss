@@ -7,4 +7,4 @@
 
 lib sling-tools:0.45.0
 import sling.tools.compiler
-SlingCompilerTool.forCrossPlatformLibraryDirectory().executeScript(args)
+SlingCompilerTool.forSushiLibraryDirectory().executeScript(args)
