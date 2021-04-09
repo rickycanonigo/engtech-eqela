@@ -20,6 +20,25 @@ model TableModel static
     updatedAt as long
 }
 
+model StudentPayModel static
+{
+    paymentsId as int
+    orNumber as string
+    studentId as string
+    assessmentId as string
+    price as string
+    paymentAmount as string
+    paymentChange as string
+    paymentDate as long
+    student_id as int
+    firstname as string
+    middlename as string
+    lastname as string
+    gender as string
+    birthdate as long
+    createdAt as long
+}
+
 func createTable as SQLTableInfo
 {
     var tbl = SQLTableInfo.forName(TABLENAME)
@@ -60,6 +79,7 @@ func getAllPayments(db as MySQLDatabase) as DynamicMap
 func insertPayment(db as MySQLDatabase, data as TableModel) as TableModel
 {
     assert data
+    data.setPaymentDateValue(SystemClock.asUTCSeconds())
     data.setCreatedAtValue(SystemClock.asUTCSeconds())
     assert db.executeSync(db.prepareInsertStatementSync(TABLENAME, data.toDynamicMap()))
     return data
@@ -83,14 +103,14 @@ func deletePayment(db as MySQLDatabase, payId as string) as bool
 
 func getAllPaymentsJoinStudents(db as MySQLDatabase) as DynamicMap
 {
-    var v = new vector<TableModel>
+    var v = new vector<StudentPayModel>
     var it = assert db.querySync(db.prepareSync("SELECT * FROM "..TABLENAME.." INNER JOIN "..StudentModel.TABLENAME.." on "..TABLENAME..".studentId = "..StudentModel.TABLENAME..".student_id")):
         return null
     while it{
         var o = it.next()
         if not o:
             break
-        var payment = TableModel.forJsonObject(o)
+        var payment = StudentPayModel.forJsonObject(o)
         if not payment:
             continue
         v += payment
@@ -111,10 +131,10 @@ func getAllPaymentsOfStudents(db as MySQLDatabase, studId as string) as DynamicM
         var o = it.next()
         if not o:
             break
-        var payment = TableModel.forJsonObject(o)
-        if not payment:
+        var paymentStudent = TableModel.forJsonObject(o)
+        if not paymentStudent:
             continue
-        v += payment
+        v += paymentStudent
     }
     var data = new DynamicMap()
     data.setObject("records", v)
