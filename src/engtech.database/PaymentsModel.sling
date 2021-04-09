@@ -56,6 +56,7 @@ func getAllPayments(db as MySQLDatabase) as DynamicMap
     data.setObject("records", v)
     return data
 }
+
 func insertPayment(db as MySQLDatabase, data as TableModel) as TableModel
 {
     assert data
@@ -78,4 +79,23 @@ func deletePayment(db as MySQLDatabase, payId as string) as bool
     var criteria = new TableModel()
     criteria.setPaymentsIdValue(String.toInteger(payId))
     return db.executeSync(db.prepareDeleteStatementSync(TABLENAME, criteria.toDynamicMap()))
+}
+
+func getAllPaymentsJoinStudents(db as MySQLDatabase) as DynamicMap
+{
+    var v = new vector<TableModel>
+    var it = assert db.querySync(db.prepareSync("SELECT * FROM "..TABLENAME.." INNER JOIN "..StudentModel.TABLENAME.." on "..TABLENAME..".studentId = "..StudentModel.TABLENAME..".student_id")):
+        return null
+    while it{
+        var o = it.next()
+        if not o:
+            break
+        var payment = TableModel.forJsonObject(o)
+        if not payment:
+            continue
+        v += payment
+    }
+    var data = new DynamicMap()
+    data.setObject("records", v)
+    return data
 }
