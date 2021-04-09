@@ -99,3 +99,24 @@ func getAllPaymentsJoinStudents(db as MySQLDatabase) as DynamicMap
     data.setObject("records", v)
     return data
 }
+
+func getAllPaymentsOfStudents(db as MySQLDatabase, studId as string) as DynamicMap
+{
+    var criteria = new TableModel()
+    criteria.setStudentId(studId)
+    var v = new vector<TableModel>
+    var it = assert db.querySync(db.prepareSelectStatementSync(TABLENAME,criteria.toDynamicMap())):
+        return null
+    while it{
+        var o = it.next()
+        if not o:
+            break
+        var payment = TableModel.forJsonObject(o)
+        if not payment:
+            continue
+        v += payment
+    }
+    var data = new DynamicMap()
+    data.setObject("records", v)
+    return data
+}
