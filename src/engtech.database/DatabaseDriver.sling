@@ -60,10 +60,10 @@ func updateTables as SQLTableInfo
     updateTable(SubjectScheduleModel.createTable())
     //  End Curriculum Model
 
-    //
+    // Student Admission Model
     updateTable(StudentModel.createTable())
     updateTable(AdmissionModel.createTable())
-    //
+    // End Student Admission Model
 }
 
 func close
